@@ -1,0 +1,21 @@
+import sys
+
+if len(sys.argv) != 3:
+	print("Usage: python stopwords test")
+	exit(-1)
+
+stopwords = []
+with open(sys.argv[1], "r") as fin:	
+	for line in fin:
+		stopwords.append(line.strip())
+
+total = 0
+count = 0
+with open(sys.argv[2], "r") as fin:
+	for line in fin:
+		total += 1
+		target_word = line.strip().split()[-1]
+		if target_word in stopwords:
+			count += 1
+
+print(float(count) / float(total))
